@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizDirectory | Find Top Rated Businesses & Services</title>
+    <style>
+        /* CSS Reset & Variables */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        :root {
+            --primary: #171923;
+            --accent: #c5a063;
+            --bg-light: #f8f9fc;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        body { background-color: var(--bg-light); color: var(--primary); }
+
+        /* Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 15px; }
+        .nav-links a:hover { color: var(--accent); }
+        .btn-outline { padding: 8px 16px; border: 1px solid var(--primary); border-radius: 4px; }
+        .btn-gold { padding: 8px 16px; background: var(--accent); color: white; border-radius: 4px; border: none; }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 80px 5% 60px; background: white; border-bottom: 1px solid var(--border); }
+        .hero h1 { font-size: 48px; margin-bottom: 15px; line-height: 1.2; }
+        .hero h1 span { color: var(--accent); }
+        .hero p { font-size: 18px; color: var(--text-muted); margin-bottom: 30px; }
+        
+        /* Search Bar */
+        .search-container { max-width: 700px; margin: 0 auto; display: flex; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+        .search-container input { flex: 1; padding: 18px 20px; border: none; outline: none; font-size: 16px; }
+        .search-container button { padding: 0 30px; background: var(--primary); color: white; border: none; font-size: 16px; cursor: pointer; font-weight: bold; }
+
+        /* Categories */
+        .categories { padding: 60px 5%; text-align: center; }
+        .section-title { font-size: 32px; margin-bottom: 40px; }
+        .category-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .cat-card { background: white; padding: 20px 30px; border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: 0.3s; font-weight: 600; }
+        .cat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+        /* Company Listings */
+        .companies { padding: 60px 5%; background: white; }
+        .company-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .company-card { border: 1px solid var(--border); border-radius: 12px; padding: 25px; transition: 0.3s; }
+        .company-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--accent); }
+        .company-header { display: flex; gap: 15px; margin-bottom: 15px; }
+        .company-logo { width: 60px; height: 60px; background: #f1f5f9; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; color: var(--accent); }
+        .company-info h3 { font-size: 20px; margin-bottom: 5px; }
+        .company-info p { font-size: 14px; color: var(--text-muted); }
+        .rating { color: #f59e0b; font-weight: bold; display: flex; align-items: center; gap: 5px; margin-bottom: 15px; }
+        .company-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+        .company-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px; }
+        .rate { font-weight: bold; color: var(--primary); }
+        .btn-visit { color: var(--accent); text-decoration: none; font-weight: bold; }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Biz<span>Directory</span></a>
+        <div class="nav-links">
+            <a href="#">Discover</a>
+            <a href="#">For Business</a>
+            <a href="#" class="btn-outline">Sign In</a>
+            <a href="#" class="btn-gold">Add Your Business</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find the right <span>Business</span><br>for your next project</h1>
+        <p>Browse verified reviews across top services in the UK and globally.</p>
+        
+        <div class="search-container">
+            <input type="text" placeholder="Try 'Plumbers in London' or 'Best Italian Restaurant'">
+            <button type="button">Search</button>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <h2 class="section-title">Browse by Category</h2>
+        <div class="category-grid">
+            <div class="cat-card">🍽️ Restaurants & Cafes</div>
+            <div class="cat-card">🏠 Real Estate</div>
+            <div class="cat-card">🏥 Healthcare</div>
+            <div class="cat-card">🛠️ Home Services</div>
+            <div class="cat-card">💻 IT & Software</div>
+            <div class="cat-card">⚖️ Legal Services</div>
+        </div>
+    </section>
+
+    <!-- Company Listings -->
+    <section class="companies">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Top Rated Businesses</h2>
+        
+        <div class="company-grid">
+            <!-- Business 1 (Restaurant) -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo">🍕</div>
+                    <div class="company-info">
+                        <h3>The Italian Kitchen</h3>
+                        <p>Restaurant & Cafe</p>
+                    </div>
+                </div>
+                <div class="rating">★ 4.9 <span style="color: var(--text-muted); font-weight: normal; font-size: 13px;">(120 Reviews)</span></div>
+                <p class="company-desc">Authentic Italian cuisine in the heart of London. Famous for our wood-fired pizzas and fresh pasta.</p>
+                <div class="company-footer">
+                    <span class="rate">$$</span>
+                    <a href="#" class="btn-visit">View Profile →</a>
+                </div>
+            </div>
+
+            <!-- Business 2 (Real Estate) -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo">🏡</div>
+                    <div class="company-info">
+                        <h3>Prime Estates</h3>
+                        <p>Real Estate Agency</p>
+                    </div>
+                </div>
+                <div class="rating">★ 4.7 <span style="color: var(--text-muted); font-weight: normal; font-size: 13px;">(85 Reviews)</span></div>
+                <p class="company-desc">Helping you find your dream home in Manchester. Specializing in residential sales and lettings.</p>
+                <div class="company-footer">
+                    <span class="rate">$$$</span>
+                    <a href="#" class="btn-visit">View Profile →</a>
+                </div>
+            </div>
+
+            <!-- Business 3 (IT Services) -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo">💻</div>
+                    <div class="company-info">
+                        <h3>Throne Solutions</h3>
+                        <p>IT Services & Consulting</p>
+                    </div>
+                </div>
+                <div class="rating">★ 5.0 <span style="color: var(--text-muted); font-weight: normal; font-size: 13px;">(Verified Firm)</span></div>
+                <p class="company-desc">Global IT and managed services provider helping businesses modernize, secure, and scale their digital operations.</p>
+                <div class="company-footer">
+                    <span class="rate">$$</span>
+                    <a href="https://thronesolutions.com/" target="_blank" class="btn-visit">View Profile →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 BizDirectory. All rights reserved. | Built for GitHub Pages
+    </footer>
+
+</body>
+</html>
