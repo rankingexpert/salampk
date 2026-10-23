@@ -21,10 +21,10 @@
         .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 15px; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 15px; cursor: pointer; }
         .nav-links a:hover { color: var(--accent); }
         .btn-outline { padding: 8px 16px; border: 1px solid var(--primary); border-radius: 4px; }
-        .btn-gold { padding: 8px 16px; background: var(--accent); color: white; border-radius: 4px; border: none; }
+        .btn-gold { padding: 8px 16px; background: var(--accent); color: white; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; }
 
         /* Hero Section */
         .hero { text-align: center; padding: 80px 5% 60px; background: white; border-bottom: 1px solid var(--border); }
@@ -36,6 +36,7 @@
         .search-container { max-width: 700px; margin: 0 auto; display: flex; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
         .search-container input { flex: 1; padding: 18px 20px; border: none; outline: none; font-size: 16px; }
         .search-container button { padding: 0 30px; background: var(--primary); color: white; border: none; font-size: 16px; cursor: pointer; font-weight: bold; }
+        .search-container button:hover { background: var(--accent); }
 
         /* Categories */
         .categories { padding: 60px 5%; text-align: center; }
@@ -57,7 +58,11 @@
         .company-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
         .company-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px; }
         .rate { font-weight: bold; color: var(--primary); }
-        .btn-visit { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .btn-visit { color: var(--accent); text-decoration: none; font-weight: bold; cursor: pointer; }
+        .btn-visit:hover { text-decoration: underline; }
+
+        /* No Results Message */
+        #noResults { text-align: center; font-size: 20px; color: var(--text-muted); display: none; margin-top: 20px; }
 
         /* Footer */
         footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 14px; }
@@ -70,9 +75,9 @@
         <a href="#" class="logo">Biz<span>Directory</span></a>
         <div class="nav-links">
             <a href="#">Discover</a>
-            <a href="#">For Business</a>
-            <a href="#" class="btn-outline">Sign In</a>
-            <a href="#" class="btn-gold">Add Your Business</a>
+            <a href="#" onclick="alert('For Business page is under construction!')">For Business</a>
+            <a href="#" class="btn-outline" onclick="alert('Sign In page is coming soon. You can connect a login form here.')">Sign In</a>
+            <a href="#" class="btn-gold" onclick="alert('Add Your Business form will open here soon!')">Add Your Business</a>
         </div>
     </header>
 
@@ -82,8 +87,9 @@
         <p>Browse verified reviews across top services in the UK and globally.</p>
         
         <div class="search-container">
-            <input type="text" placeholder="Try 'Plumbers in London' or 'Best Italian Restaurant'">
-            <button type="button">Search</button>
+            <!-- Yeh ID search input ko connect karegi -->
+            <input type="text" id="searchInput" placeholder="Try 'Restaurant' or 'IT' or 'Real Estate'...">
+            <button type="button" onclick="searchBusiness()">Search</button>
         </div>
     </section>
 
@@ -91,12 +97,12 @@
     <section class="categories">
         <h2 class="section-title">Browse by Category</h2>
         <div class="category-grid">
-            <div class="cat-card">🍽️ Restaurants & Cafes</div>
-            <div class="cat-card">🏠 Real Estate</div>
-            <div class="cat-card">🏥 Healthcare</div>
-            <div class="cat-card">🛠️ Home Services</div>
-            <div class="cat-card">💻 IT & Software</div>
-            <div class="cat-card">⚖️ Legal Services</div>
+            <div class="cat-card" onclick="filterCategory('Restaurant')">🍽️ Restaurants & Cafes</div>
+            <div class="cat-card" onclick="filterCategory('Real Estate')">🏠 Real Estate</div>
+            <div class="cat-card" onclick="filterCategory('Healthcare')">🏥 Healthcare</div>
+            <div class="cat-card" onclick="filterCategory('Home Services')">🛠️ Home Services</div>
+            <div class="cat-card" onclick="filterCategory('IT')">💻 IT & Software</div>
+            <div class="cat-card" onclick="filterCategory('Legal')">⚖️ Legal Services</div>
         </div>
     </section>
 
@@ -104,9 +110,10 @@
     <section class="companies">
         <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Top Rated Businesses</h2>
         
-        <div class="company-grid">
-            <!-- Business 1 (Restaurant) -->
-            <div class="company-card">
+        <div class="company-grid" id="companyGrid">
+            <!-- Business 1 -->
+            <!-- data-category aur data-name add kiya hai search ke liye -->
+            <div class="company-card" data-category="Restaurant" data-name="The Italian Kitchen">
                 <div class="company-header">
                     <div class="company-logo">🍕</div>
                     <div class="company-info">
@@ -118,12 +125,12 @@
                 <p class="company-desc">Authentic Italian cuisine in the heart of London. Famous for our wood-fired pizzas and fresh pasta.</p>
                 <div class="company-footer">
                     <span class="rate">$$</span>
-                    <a href="#" class="btn-visit">View Profile →</a>
+                    <a href="#" class="btn-visit" onclick="alert('This will open the restaurant profile page.')">View Profile →</a>
                 </div>
             </div>
 
-            <!-- Business 2 (Real Estate) -->
-            <div class="company-card">
+            <!-- Business 2 -->
+            <div class="company-card" data-category="Real Estate" data-name="Prime Estates">
                 <div class="company-header">
                     <div class="company-logo">🏡</div>
                     <div class="company-info">
@@ -135,12 +142,12 @@
                 <p class="company-desc">Helping you find your dream home in Manchester. Specializing in residential sales and lettings.</p>
                 <div class="company-footer">
                     <span class="rate">$$$</span>
-                    <a href="#" class="btn-visit">View Profile →</a>
+                    <a href="#" class="btn-visit" onclick="alert('This will open the real estate profile page.')">View Profile →</a>
                 </div>
             </div>
 
-            <!-- Business 3 (IT Services) -->
-            <div class="company-card">
+            <!-- Business 3 -->
+            <div class="company-card" data-category="IT" data-name="Throne Solutions">
                 <div class="company-header">
                     <div class="company-logo">💻</div>
                     <div class="company-info">
@@ -156,12 +163,61 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Agar search mein kuch na mile to yeh message aayega -->
+        <div id="noResults">No businesses found matching your search.</div>
     </section>
 
     <!-- Footer -->
     <footer>
         &copy; 2026 BizDirectory. All rights reserved. | Built for GitHub Pages
     </footer>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+        // Ye function search bar mein type karne par chalta hai
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let searchValue = this.value.toLowerCase();
+            let cards = document.querySelectorAll('.company-card');
+            let found = false;
+
+            cards.forEach(card => {
+                let name = card.getAttribute('data-name').toLowerCase();
+                let category = card.getAttribute('data-category').toLowerCase();
+
+                if (name.includes(searchValue) || category.includes(searchValue)) {
+                    card.style.display = 'block';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Agar kuch na mile to message show karein
+            if (found) {
+                document.getElementById('noResults').style.display = 'none';
+            } else {
+                document.getElementById('noResults').style.display = 'block';
+            }
+        });
+
+        // Category par click karne ka function
+        function filterCategory(categoryName) {
+            document.getElementById('searchInput').value = categoryName;
+            // Trigger the search
+            let event = new Event('keyup');
+            document.getElementById('searchInput').dispatchEvent(event);
+            // Scroll down to results
+            document.querySelector('.companies').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Search button click karne ka function
+        function searchBusiness() {
+            let event = new Event('keyup');
+            document.getElementById('searchInput').dispatchEvent(event);
+            document.querySelector('.companies').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
